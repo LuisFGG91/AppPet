@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #006b81;
+  border: 5px solid black;
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+
+.containerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  background-color: #006b81;
+  border: 5px solid black;
+  margin-top: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: auto;
+  max-height: 800px;
+  padding: 10px;
+}
+
+.pet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  margin: 25px;
+  border: 3px black solid;
+  padding: 15px;
+  width: 250px;
+}
+
+.pet>div {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.buttonHeader {
+  display: flex;
+  gap: 10px;
+}
+
+.buttonHeader>button {
+  width: 150px;
+  height: 30px;
+  border: solid black 2px;
+  background-color: #085394;
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  box-shadow: 3px 3px 0px 0px black;
+}
+
+h3 {
+  font-size: xx-large;
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+}
+
+/* Add any additional styling as needed */

@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .  # Asegúrate de que el Dockerfile esté en el mismo directorio que el docker-compose
+      dockerfile: Dockerfile  # Puedes especificar un nombre diferente si tu Dockerfile tiene un nombre distinto
+    entrypoint:
+      - sleep
+      - infinity
+    init: true
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    #ports:
+    #  - "4200:4200"  # Suponiendo que tu app corre en el puerto 4200, por ejemplo Angular
+    # Resto de la configuración necesaria para tu aplicación
