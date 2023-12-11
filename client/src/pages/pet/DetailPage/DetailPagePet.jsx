@@ -93,11 +93,11 @@ const DetailPagePet = () => {
         <Container>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "whitesmoke" }}>
-              Detail Pet
+              Detail Pet Shelter
             </Typography>
             <div className="buttonHeader">
               <Button color="inherit" onClick={petList}>
-                Pet List
+                Pet Shelter List
               </Button>
             </div>
           </Toolbar>

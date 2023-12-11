@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./PagePet.css";
+import { CheckCircleOutline, RadioButtonUnchecked } from '@mui/icons-material';
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, AppBar, Toolbar, Typography, Container } from '@mui/material';
-;
+import { useAuth } from '../../../context/AuthContext';
+
 const PetPage = () => {
+  const { logout } = useAuth();
   const [listpets, setListpets] = useState([]);
   const navigate = useNavigate();
 
@@ -53,8 +56,16 @@ const PetPage = () => {
     navigate(`/reviews/${idPet}`);
   };
 
-  const navigateToCrewBoard = () => {
-    navigate("/pets");
+  const userLogout = async () => {
+    try {
+      // Llamada al backend para cerrar sesión
+      await axios.post('http://localhost:8110/api/user/logout');
+      logout();
+      // Redirección a la lista de mascotas
+      navigate('/');
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
 
   return (
@@ -64,11 +75,11 @@ const PetPage = () => {
           <Container>
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "whitesmoke" }}>
-                Lista de Pets
+                List de Pets Shelter
               </Typography>
               <div className="buttonHeader">
-                <Button color="inherit" onClick={navigateToCrewBoard}>
-                  Crew Board
+                <Button color="inherit" onClick={userLogout}>
+                 Logout
                 </Button>
                 <Button color="inherit" onClick={addPet}>
                   Add Pet
@@ -93,13 +104,19 @@ const PetPage = () => {
                   <TableRow key={index}>
                     <TableCell>{pet.name}</TableCell>
                     <TableCell>{pet.type}</TableCell>
-                    <TableCell>{pet.adopted}</TableCell>
+                    <TableCell>
+                      {pet.adopted ? (
+                        <CheckCircleOutline style={{ color: 'green' }} />
+                      ) : (
+                        <RadioButtonUnchecked style={{ color: 'red' }} />
+                      )}
+                    </TableCell>
                     <TableCell>
                       <Button variant="outlined" onClick={() => detailPet(pet._id)}>
-                        Ver Pet
+                        Show Pet
                       </Button>
                       <Button variant="outlined" onClick={() => deletePet(pet._id)}>
-                        Eliminar Pet
+                        Delete Pet
                       </Button>
                     </TableCell>
                   </TableRow>

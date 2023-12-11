@@ -59,11 +59,11 @@ const PetCreatePage = () => {
         <Container>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "whitesmoke" }}>
-              Add Pet
+              Add Pet Shelter
             </Typography>
             <div className="buttonHeader">
               <Button color="inherit" onClick={petList}>
-                Pet List
+                Pet Shelter List
               </Button>
             </div>
           </Toolbar>

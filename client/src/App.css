@@ -4,5 +4,9 @@
 
 body {
   margin: 0 auto;
-  width: 1000px;
+      background: "linear-gradient(to top, rgba(0, 107, 129, 1), rgba(0, 107, 129, 0.5))";
+          min-height: "100vh";
+          display: "flex";
+          flex-direction: "column";
+          justify-content: "center";
 }
