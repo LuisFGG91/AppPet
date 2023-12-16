@@ -1,16 +1,27 @@
-// authenticate.js
 import jwt from 'jsonwebtoken';
 
-const secret = "I can't believe this key is so secret!";
+const secret = "mysecret";
 
 const authenticate = (req, res, next) => {
-  jwt.verify(req.cookies.usertoken, secret, (err, payload) => {
+  // Verifica si existe la cookie del token
+  const token = req.cookies.usertoken;
+
+  if (!token) {
+    // Si no hay token, retorna un error no autorizado (401)
+    return res.status(401).json({ verified: false, message: 'Unauthorized' });
+  }
+
+  // Verifica el token
+  jwt.verify(token, secret, (err, payload) => {
     if (err) {
-      res.status(401).json({ verified: false });
+      // Si hay un error en la verificación, retorna un error no autorizado (401)
+      return res.status(401).json({ verified: false, message: 'Unauthorized' });
     } else {
+      // Si la verificación es exitosa, establece el usuario en la sesión
+      req.user = payload;
       next();
     }
   });
-}
+};
 
 export { authenticate };

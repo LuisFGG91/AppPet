@@ -6,7 +6,8 @@ import { useAuth } from '../../../context/AuthContext';
 
 const RegisterUserPage = () => {
   const { login } = useAuth();
-  const [nickNameRegis, setNickNameRegis] = useState("");
+  const [firstNameRegis, setFirstNameRegis] = useState("");
+  const [lastNameRegis, setLastNameRegis] = useState("");
   const [mailRegis, setMailRegis] = useState("");
   const [passwordRegis, setPasswordRegis] = useState("");
   const [confirmPasswordRegis, setConfirmPasswordRegis] = useState("");
@@ -19,7 +20,8 @@ const RegisterUserPage = () => {
     try {
       // Validaciones de campos
       if (
-        nickNameRegis === "" ||
+        firstNameRegis === "" ||
+        lastNameRegis === "" ||
         mailRegis === "" ||
         passwordRegis === "" ||
         confirmPasswordRegis === ""
@@ -35,7 +37,8 @@ const RegisterUserPage = () => {
 
       // Objeto de usuario para el registro
       const userObj = {
-        nick: nickNameRegis,
+        firstName: firstNameRegis,
+        lastName: lastNameRegis,
         email: mailRegis,
         password: passwordRegis,
         confirmPassword: confirmPasswordRegis,
@@ -56,7 +59,8 @@ const RegisterUserPage = () => {
       // Éxito en el registro
       alert("El registro fue exitoso");
       // Limpiar los campos después del registro exitoso
-      setNickNameRegis("");
+      setFirstNameRegis("");
+      setLastNameRegis("");
       setMailRegis("");
       setPasswordRegis("");
       setConfirmPasswordRegis("");
@@ -85,8 +89,8 @@ const RegisterUserPage = () => {
       // Verificar el estado de la respuesta
       if (response.status === 200) {
         // Login exitoso
-        login();
-        navigate("/pets");
+        login(response.data.user);
+        navigate("/movies");
       } else {
         // Manejar errores de inicio de sesión
         alert("Hubo un error durante el inicio de sesión");
@@ -107,7 +111,6 @@ const RegisterUserPage = () => {
   return (
     <Container
       sx={{
-        background: "linear-gradient(to top, rgba(0, 107, 129, 1), rgba(0, 107, 129, 0.5))",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -115,7 +118,7 @@ const RegisterUserPage = () => {
       }}
     >
       <Typography variant="h4" align="center" gutterBottom>
-        Welcome to Pet Shelter
+        Welcome to Moview review
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={6}>
@@ -128,10 +131,17 @@ const RegisterUserPage = () => {
           </Typography>
           <form onSubmit={handleSubmit}>
             <TextField
-              label="Nick Name"
+              label="First Name"
               fullWidth
-              value={nickNameRegis}
-              onChange={(e) => setNickNameRegis(e.target.value)}
+              value={firstNameRegis}
+              onChange={(e) => setFirstNameRegis(e.target.value)}
+              margin="normal"
+            />
+            <TextField
+              label="Last Name"
+              fullWidth
+              value={lastNameRegis}
+              onChange={(e) => setLastNameRegis(e.target.value)}
               margin="normal"
             />
             <TextField

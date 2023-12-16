@@ -3,9 +3,13 @@ import bcrypt from "bcrypt";
 
 const UserSchema = new mongoose.Schema(
     {
-        nick: {
+        firstName: {
             type: String,
             required: [true, "First name is required"]
+        },
+        lastName: {
+            type: String,
+            required: [true, "Last name is required"]
         },
         email: {
             type: String,
@@ -40,16 +44,6 @@ UserSchema.pre('validate', function (next) {
         this.invalidate('confirmPassword', 'Password must match confirm password');
     }
     next();
-});
-
-// Middleware para hashear la contraseña antes de guardarla
-UserSchema.pre('save', function (next) {
-    bcrypt.hash(this.password, 10)
-        .then(hash => {
-            this.password = hash;
-            next();
-        })
-        .catch(err => next(err));
 });
 
 const User = mongoose.model('User', UserSchema);
