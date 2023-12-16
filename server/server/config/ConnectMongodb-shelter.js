@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const createShelterConnect = () => {
   mongoose
-    .connect("mongodb://localhost:27017/pet", { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect("mongodb://localhost/movie", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
       console.log("conectado a la BD correctamente");
     })
