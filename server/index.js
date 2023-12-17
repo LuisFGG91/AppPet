@@ -9,17 +9,18 @@ import * as userRoutes from './server/routes/RoutesUser.js';
 
 const app = express();
 const port = 8110;
+/*
 const corsOptions = {
     credentials: true, // Allow credentials (cookies) to be sent to/from origin
     origin: 'http://localhost:3000', // Allow only this origin
     methods: 'GET, POST, PUT, DELETE', // Allow these methods
     // allowedHeaders: 'Content-Type, Authorization', // Allow these headers
 };
-
+*/
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(cookieParser());
 
